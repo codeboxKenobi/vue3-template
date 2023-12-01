@@ -19,6 +19,7 @@ import FormButton from '../../UI/ButtonCmp.vue';
 import FormLink from '../../UI/LinkCmp.vue';
 
 import validate from '../../../helpers/validate.js'
+import network from '@/helpers/network'
 
     export default {
         components: {
@@ -41,7 +42,7 @@ import validate from '../../../helpers/validate.js'
                 this[field] = value;
             },
 
-            login() {
+            toValidate() {
                 this.errors = {};
 
                 const rules = [
@@ -50,6 +51,22 @@ import validate from '../../../helpers/validate.js'
                 ];
 
                 this.errors = validate(rules);
+            },
+
+            login() {
+                this.toValidate();
+                if (this.errors.count > 0) return;
+                network({
+                    method: "post",
+                    url: `${this.$store.state.api}/login`,
+                    data: {
+                        email: this.email,
+                        password: this.password
+                    }
+                })
+                .then((res) => {
+                    console.log(res);
+                })
             }
         },
     }

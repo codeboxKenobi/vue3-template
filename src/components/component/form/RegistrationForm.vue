@@ -61,7 +61,7 @@ import validate from '../../../helpers/validate.js'
                 this[field] = value;
             },
 
-            registration() {
+            toValidate() {
                 this.errors = {};
 
                 const rules = [
@@ -71,6 +71,13 @@ import validate from '../../../helpers/validate.js'
                 ];
 
                 this.errors = validate(rules);
+            },
+
+            registration() {
+                this.toValidate();
+                if (this.errors.count > 0) return;
+
+                console.log("GO");
             }
         },
     }

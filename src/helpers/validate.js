@@ -29,7 +29,9 @@ function validatePasswordConfirm(passArr) {
 }
 
 function validate(rules) {
-    let errors = {};
+    let errors = {
+        count: 0
+    };
 
     rules.forEach(r => {
         if (r.type === "email") {
@@ -38,6 +40,7 @@ function validate(rules) {
                 error: validateEmail(r.value), 
                 message: validateEmail(r.value) ? message[r.type] : "",
             };
+            errors[r.type].error ? errors.count +=1 : '';
         }
 
         else if (r.type === "password") {
@@ -46,6 +49,7 @@ function validate(rules) {
                 error: validatePassword(r.value), 
                 message: validatePassword(r.value) ? message[r.type] : "",
             };
+            errors[r.type].error ? errors.count +=1 : '';
         }
 
         else if (r.type === "passwordConfirm") {
@@ -54,6 +58,7 @@ function validate(rules) {
                 error: validatePasswordConfirm(r.value), 
                 message: validatePasswordConfirm(r.value) ? message[r.type] : "",
             };
+            errors[r.type].error ? errors.count +=1 : '';
         }
     });
 

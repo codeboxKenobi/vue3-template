@@ -1,14 +1,33 @@
 import axios from "axios";
 
-async function network(url, method, params, data) {
-    await axios[method]({
+export default async function network(queryData) {
+    const { url, method, params, data } = queryData
+    const config = {
         url: url, // url - URL, на который будет сделан запрос.
-        params: params, // params - параметры URL, которые будут отправлены с запросом.
-        data: data, // data - данные, которые будут отправлены как тело запроса ( PUT, POST, DELETE, PATCH ).
+
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
-    });
-};
+    }
 
-module.exports = network;
+    if (!method) {
+        config["method"] = "get";
+    } else {
+        config["method"] = method;
+    }
+
+    if (!params) {
+        config["params"] = {};
+    } else {
+        config["params"] = params;
+    }
+
+    if (!data) {
+        config["data"] = {};
+    } else {
+        config["data"] = data;
+    }
+    console.log(config);
+
+    await axios(config);
+}
