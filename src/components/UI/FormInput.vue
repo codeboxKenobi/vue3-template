@@ -8,6 +8,7 @@
                 :type="inputType" 
                 :placeholder="placeholder" 
                 :disabled="disabled"
+                @change="input"
             >
             <div class="input-warning">
                 <span v-if="errors[fieldName]">
@@ -35,11 +36,9 @@
           }
         },
 
-        watch: {
-            value: {
-                handler(val) {
-                    this.$emit("input", val)
-                }
+        methods: {
+            input() {
+                this.$emit("input", this.value)
             }
         }
     }
