@@ -1,0 +1,32 @@
+$main-border: 1px solid #d8d8d8;
+$warning-border: 1px solid #9d3838;
+$input-padding: 10px;
+$out-margin: 10px;
+$rounded: 6px;
+$rounded-sm: 4px;
+$flatdrop: #f8f8f8;
+$backdrop: #dfdfdf;
+$text-color: #636363;
+$link-color: #5b75a0;
+$text-warning: #9d3838;
+$active-border: #636363;
+$placeholder-color: #c5c5c5;
+$button-padding: 10px;
+$button-margin: 15px;
+$button-bg-hover: #e5e5e5;
+$button-bg-active: #f7f7f7;
+
+$main-font: monospace;
+
+@mixin flex_row($jc, $ai) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+@mixin flex_col($jc, $ai) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $jc;
+    align-items: $ai;
+}
