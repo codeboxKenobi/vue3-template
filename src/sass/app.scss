@@ -4,7 +4,9 @@ $input-padding: 10px;
 $out-margin: 10px;
 $rounded: 6px;
 $rounded-sm: 4px;
+$main-white: #ffffff;
 $flatdrop: #f8f8f8;
+$hdrop: #f0f0f0;
 $backdrop: #dfdfdf;
 $text-color: #636363;
 $link-color: #5b75a0;
@@ -30,3 +32,337 @@ $main-font: monospace;
     justify-content: $jc;
     align-items: $ai;
 }
+
+// =====================
+// TRANSITION ANIMATIONS
+// =====================
+
+// _____________________
+//        fade
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0
+  }
+  
+  // _____________________
+  //     slide-fade
+  .slide-fade-enter-active {
+    transition: all .2s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  
+  // _____________________
+  //     slidetop-fade
+  .slidetop-fade-enter-active {
+    transition: all .4s ease;
+  }
+  .slidetop-fade-leave-active {
+    transition: all .4s cubic-bezier(.10, .70, .10, 1);
+  }
+  .slidetop-fade-enter, .slidetop-fade-leave-to {
+    transform:translateY(-40vh);
+    // opacity: 0;
+  }
+  
+  // _____________________
+  //     slidebottom-fade
+  .slidebottom-fade-enter-active {
+    transition: all .4s ease;
+  }
+  .slidebottom-fade-leave-active {
+    transition: all .4s cubic-bezier(.10, .70, .10, 1);
+  }
+  .slidebottom-fade-enter, .slidetop-fade-leave-to {
+    transform:translateY(40vh);
+    // opacity: 0;
+  }
+  
+  // _____________________
+  //        bounce
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+    animation-timing-function:cubic-bezier(.10, .70, .10, 1) ;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+    animation-timing-function:cubic-bezier(.10, .70, .10, 1) ;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  // _____________________
+  //        decent
+  .decent-enter-active {
+    animation: decent-in .4s;
+  }
+  .decent-leave-active {
+    animation: decent-out .3s;
+  }
+  @keyframes decent-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes decent-out {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.1;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+  }
+  
+  
+  
+  
+  
+  // _____________________
+  //    decent for modal
+  .modal-wrap-enter-active{
+    animation: modalbgIn 0.5s;
+    .modal-content{
+      animation: decent-in 0.4s;
+    }
+  }
+  .modal-wrap-leave-active{
+    animation: modalbgOut 0.25s;
+    .modal-content{
+      animation: decent-out 0.3s;
+    }
+  }
+  
+  @keyframes modalbgIn {
+    from{
+      background: rgba(0, 0, 0, 0.0);
+    }
+    to {
+  
+    }
+  }
+  
+  @keyframes modalbgOut {
+    from{
+  
+    }
+    to {
+      background: rgba(0, 0, 0, 0.0);
+    }
+  }
+  
+  // _____________________
+  //        rolldown
+  .rolldown-enter-active {
+    animation: slideInDown .4s;
+  }
+  .rolldown-leave-active {
+    animation: slideOutDown .3s;
+  }
+  @keyframes slideInDown {
+    from {
+      transform: translate3d(0, -100%, 0);
+      visibility: visible;
+    }
+  
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  @keyframes slideOutDown {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+  
+    to {
+      visibility: hidden;
+      transform: translate3d(0, -100%, 0);
+    }
+  }
+  
+  // _____________________
+  //        rotatedown
+  .rotatedown-enter-active {
+    animation: rotateInDownLeft .25s;
+  }
+  .rotatedown-leave-active {
+    animation: rotateOutDownLeft .25s;
+  }
+  @keyframes rotateInDownLeft {
+    from {
+      transform-origin: left bottom;
+      transform: rotate3d(0, 0, 1, -45deg);
+      opacity: 0;
+    }
+  
+    to {
+      transform-origin: left bottom;
+      transform: none;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes rotateOutDownLeft {
+    from {
+      transform-origin: left bottom;
+      opacity: 1;
+    }
+  
+    to {
+      transform-origin: left bottom;
+      transform: rotate3d(0, 0, 1, -45deg);
+      opacity: 0;
+    }
+  }
+  
+  // _____________________
+  //        decent-top
+  .decent-top-enter-active {
+    animation: dtin .2s;
+  }
+  .decent-top-leave-active {
+    animation: dtout .2s;
+  }
+  @keyframes dtin {
+      0% {
+          opacity: 0;
+          transform: translateY(-50%) scaleY(0);
+  
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+          transform: translateY(0) scaleY(1);
+          opacity: 1;
+      }
+  }
+  
+  @keyframes dtout {
+      0% {
+          transform: translateY(0) scaleY(1);
+          opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+          opacity: 0;
+          transform: translateY(-50%) scaleY(0);
+      }
+  }
+  
+  // _____________________
+  //        decent-bottom
+  .decent-bottom-enter-active {
+    animation: dbin .2s;
+  }
+  .decent-bottom-leave-active {
+    animation: dbout .2s;
+  }
+  @keyframes dbin {
+      0% {
+          opacity: 0;
+          transform: translateY(50%) scaleY(0);
+  
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+          transform: translateY(0) scaleY(1);
+          opacity: 1;
+      }
+  }
+  
+  @keyframes dbout {
+      0% {
+          transform: translateY(0) scaleY(1);
+          opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+          opacity: 0;
+          transform: translateY(50%) scaleY(0);
+      }
+  }
+  
+  .decent-left-enter-active {
+    animation: dlin .2s;
+  }
+  .decent-left-leave-active {
+    animation: dblout .2s;
+  }
+  @keyframes dlin {
+      0% {
+          opacity: 0;
+          transform: translateX(-50%) scaleX(0);
+  
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+          transform: translateX(0) scaleX(1);
+          opacity: 1;
+      }
+  }
+  
+  @keyframes dlout {
+      0% {
+          transform: translateX(0) scaleX(1);
+          opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+          opacity: 0;
+          transform: translateX(-50%) scaleX(0);
+      }
+  }
+  
+  // ______________
+  // fidget spinner
+  .spinning-item{
+      animation-name: spin;
+      animation-duration: 1800ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+  }
+  @keyframes spin {
+      0% {
+      transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(360deg);
+      }
+  }

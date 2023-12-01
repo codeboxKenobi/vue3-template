@@ -1,12 +1,18 @@
 <template>
     <div class="sub_container">
-        SUB_CONTAINER
+        <header-cmp />
+        <main-cmp />
     </div>
 </template>
 
 <script>
+import HeaderCmp from '@/components/component/header/HeaderCmp.vue';
+import MainCmp from '@/components/component/user/MainCmp.vue';
     export default {
-        
+        components: {
+            HeaderCmp,
+            MainCmp
+        }
     }
 </script>
 
@@ -14,11 +20,8 @@
 @import "~/src/sass/app.scss";
 
 .sub_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex_col(flex-start, center);
     height: 100vh;
     width: 100vw;
-    background-color: #8ac186;
 }
 </style>

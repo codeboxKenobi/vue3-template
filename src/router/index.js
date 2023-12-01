@@ -10,6 +10,11 @@ const routes = [
     path: '/registration',
     name: 'registration',
     component: () => import(/* webpackChunkName: "registration" */ '../views/RegistrationCmp.vue')
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import(/* webpackChunkName: "user" */ '../views/SubContainer.vue')
   }
 ]
 
