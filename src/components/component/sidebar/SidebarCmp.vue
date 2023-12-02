@@ -15,7 +15,7 @@
                     </div>
                     <transition name="decent-top">
                         <div v-if="item.isOpen">
-                            <li v-for="(mI, x) in item.children" :key="x" class="sidebar-item-parent-children">
+                            <li v-for="(mI, x) in item.children" :key="x" class="sidebar-item-parent-children" @click="goTo(mI.to)">
                                 <div class="icon" />
                                 {{ mI.title }}
                             </li>
@@ -48,12 +48,12 @@ import IconCmp from '@/components/UI/IconCmp.vue';
                             {
                                 title: "Ремонт",
                                 rules: "",
-                                to: ""
+                                to: "/login"
                             },
                             {
                                 title: "Доставка",
                                 rules: "",
-                                to: ""
+                                to: "/registration"
                             },
                         ]
                     },
@@ -233,6 +233,10 @@ import IconCmp from '@/components/UI/IconCmp.vue';
         methods: {
             menuToggle(menuItem) {
                 return menuItem.isOpen = !menuItem.isOpen;
+            },
+
+            goTo(endpoint) {
+                this.$router.push(`${endpoint}`)
             }
         }
     }
@@ -307,7 +311,7 @@ import IconCmp from '@/components/UI/IconCmp.vue';
 }
 
 .sidebar {
-    @include flex_col(flex-start, center);
+    @include flex_col(space-between, center);
     height: 100%;
     width: 240px;
     // border-right: $main-border;
