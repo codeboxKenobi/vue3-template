@@ -33,6 +33,15 @@ $main-font: monospace;
     align-items: $ai;
 }
 
+.menu-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border: $main-border;
+}
+
 // =====================
 // TRANSITION ANIMATIONS
 // =====================

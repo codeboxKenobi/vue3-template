@@ -3,7 +3,7 @@
         <div class="sidebar-wrapper">
             <div v-for="(item, i) in sidebarMenu" :key="i" class="sidebar-item" @click="menuToggle(item)">
                 <ul class="sidebar-item-parent">
-                    <li class="sidebar-item-parent-children head-title">
+                    <li class="sidebar-item-parent-children head-title">        
                         {{ item.title }}
                     </li>
                     <transition name="decent-top">
@@ -21,6 +21,10 @@
 
 <script>
     export default {
+        components: {
+            
+        },
+
         data() {
             return {
                 openMenu: null,
@@ -116,7 +120,7 @@
     @include flex_col(flex-start, center);
     height: 100%;
     width: 240px;
-    // border-right: $main-border;
+    border-right: $main-border;
 
     &-item {
         @include flex_row(flex-start, center);
