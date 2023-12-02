@@ -1,8 +1,10 @@
 <template>
   <svg
     class="icon"
-    style="width:44px; height:44px"
     viewBox="0 0 24 24"
+    fill="#787878"
+    fill-rule="evenodd" 
+    clip-rule="evenodd"
   >
     <path :d="path" />
   </svg>

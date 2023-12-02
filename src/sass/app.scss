@@ -17,6 +17,8 @@ $button-padding: 10px;
 $button-margin: 15px;
 $button-bg-hover: #e5e5e5;
 $button-bg-active: #f7f7f7;
+$scroll-track: #d8d8d8;
+$scroll-thumb: #9d9d9d;
 
 $main-font: monospace;
 
@@ -253,10 +255,10 @@ $main-font: monospace;
   // _____________________
   //        decent-top
   .decent-top-enter-active {
-    animation: dtin .2s;
+    animation: dtin .3s;
   }
   .decent-top-leave-active {
-    animation: dtout .2s;
+    animation: dtout 0.3s;
   }
   @keyframes dtin {
       0% {
