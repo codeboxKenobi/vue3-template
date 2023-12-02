@@ -1,10 +1,10 @@
 <template>
     <div class="sidebar">
         <div class="sidebar-wrapper">
-            <div v-for="(item, i) in setState" :key="i" class="sidebar-item" @click="menuToggle(item)">
+            <div v-for="(item, i) in setState" :key="i" class="sidebar-item" >
                 <ul class="sidebar-item-parent">
                     <div class="p-wrapper" :class="[item.isOpen ? 'p-wrapper-active' : 'p-wrapper']">
-                        <li class="sidebar-item-parent-children head-title" :class="[ item.isOpen ? 'head-title-border' : '']">
+                        <li class="sidebar-item-parent-children head-title" :class="[ item.isOpen ? 'head-title-border' : '']" @click.stop="menuToggle(item)">
                             <div class="icon">
                                 <icon-cmp :name="item.icon" />
                             </div>
