@@ -1,10 +1,11 @@
 <template>
     <div class="sidebar">
         <div class="sidebar-wrapper">
+
             <div v-for="(item, i) in setState" :key="i" class="sidebar-item" >
                 <ul class="sidebar-item-parent">
-                    <div class="p-wrapper" :class="[item.isOpen ? 'p-wrapper-active' : 'p-wrapper']">
-                        <li class="sidebar-item-parent-children head-title" :class="[ item.isOpen ? 'head-title-border' : '']" @click.stop="menuToggle(item)">
+                    <div class="sidebar-item-parent-wrapper" :class="[item.isOpen ? 'sidebar-item-parent-wrapper-active' : 'sidebar-item-parent-wrapper']">
+                        <li class="sidebar-item-parent-wrapper-children head-title" :class="[ item.isOpen ? 'head-title-border' : '']" @click.stop="menuToggle(item)">
                             <div class="icon">
                                 <icon-cmp :name="item.icon" />
                             </div>
@@ -15,7 +16,7 @@
                     </div>
                     <transition name="decent-top">
                         <div v-if="item.isOpen">
-                            <li v-for="(mI, x) in item.children" :key="x" class="sidebar-item-parent-children" @click="goTo(mI.to)">
+                            <li v-for="(mI, x) in item.children" :key="x" class="sidebar-item-parent-wrapper-children" @click="goTo(mI.to)">
                                 <div class="icon" />
                                 {{ mI.title }}
                             </li>
@@ -255,38 +256,14 @@ import IconCmp from '@/components/UI/IconCmp.vue';
     overflow-y: auto;
 }
 
-.p-wrapper {
-    height: 100%;
-    @include flex_row(space-between, center);
-    
-    &:hover {
-        border-top-left-radius: $rounded;
-        border-top-right-radius: $rounded;
-        background-color: $hdrop;
-        border-bottom-left-radius: $rounded;
-        border-bottom-right-radius: $rounded;
-    }
-}
-
-
-.p-wrapper-active {
-    height: 100%;
-    @include flex_row(space-between, center);
-    
-    &:hover {
-        border-top-left-radius: $rounded;
-        border-top-right-radius: $rounded;
-        background-color: $hdrop;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-}
-
 .icon {
     @include flex_row(center, center);
     height: 30px;
     width: 30px;
     margin-right: 5px;
+}
+.close {
+    width: 100%;
 }
 
 .head-title {
@@ -299,11 +276,6 @@ import IconCmp from '@/components/UI/IconCmp.vue';
         background-color: $flatdrop;
     }
 }
-
-.close {
-    width: 100%;
-}
-
 .head-title-border {
     border: none;
     border-bottom-left-radius: $rounded;
@@ -314,7 +286,6 @@ import IconCmp from '@/components/UI/IconCmp.vue';
     @include flex_col(space-between, center);
     height: 100%;
     width: 240px;
-    // border-right: $main-border;
     
     &-item {
         @include flex_row(flex-start, center);
@@ -330,27 +301,55 @@ import IconCmp from '@/components/UI/IconCmp.vue';
         
         &-parent {
             width: 100%;
-            
-            &-children {
-                @include flex_row(flex-start, center);
-                list-style-type: none;
-                height: 40px;
-                width: 100%;
-                padding-left: 10px;
-                padding-right: 10px;
-                cursor: pointer;
-                transition: all 0.5s;
 
+            &-wrapper {
+                height: 100%;
+                @include flex_row(space-between, center);
+                
                 &:hover {
+                    border-top-left-radius: $rounded;
+                    border-top-right-radius: $rounded;
                     background-color: $hdrop;
-                }
-
-                &:last-child:hover {
                     border-bottom-left-radius: $rounded;
                     border-bottom-right-radius: $rounded;
-                    background-color: $hdrop;
+                }
+
+                &-children {
+                    @include flex_row(flex-start, center);
+                    list-style-type: none;
+                    height: 40px;
+                    width: 100%;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    cursor: pointer;
+                    transition: all 0.5s;
+
+                    &:hover {
+                        background-color: $hdrop;
+                    }
+
+                    &:last-child:hover {
+                        border-bottom-left-radius: $rounded;
+                        border-bottom-right-radius: $rounded;
+                        background-color: $hdrop;
+                    }
                 }
             }
+
+            &-wrapper-active {
+                height: 100%;
+                @include flex_row(space-between, center);
+                
+                &:hover {
+                    border-top-left-radius: $rounded;
+                    border-top-right-radius: $rounded;
+                    background-color: $hdrop;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+            }
+            
+            
         }
     }
 }
