@@ -5,7 +5,7 @@ $out-margin: 10px;
 $rounded: 6px;
 $rounded-sm: 4px;
 $main-white: #ffffff;
-$flatdrop: #f8f8f8;
+$flatdrop: #f2f2f2;
 $hdrop: #f0f0f0;
 $backdrop: #dfdfdf;
 $text-color: #636363;
@@ -33,6 +33,15 @@ $main-font: monospace;
     flex-direction: column;
     justify-content: $jc;
     align-items: $ai;
+}
+
+.head-top {
+  min-height: 40px;
+  width: 100%;
+}
+.footer {
+  min-height: 40px;
+  width: 100%;
 }
 
 .menu-icon {

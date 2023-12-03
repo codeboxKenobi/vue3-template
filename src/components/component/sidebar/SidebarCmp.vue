@@ -1,11 +1,20 @@
 <template>
     <div class="sidebar">
+        <div class="head-top"></div>
         <div class="sidebar-wrapper">
-
             <div v-for="(item, i) in setState" :key="i" class="sidebar-item" >
                 <ul class="sidebar-item-parent">
-                    <div class="sidebar-item-parent-wrapper" :class="[item.isOpen ? 'sidebar-item-parent-wrapper-active' : 'sidebar-item-parent-wrapper']">
-                        <li class="sidebar-item-parent-wrapper-children head-title" :class="[ item.isOpen ? 'head-title-border' : '']" @click.stop="menuToggle(item)">
+                    <div class="sidebar-item-parent-wrapper" 
+                        :class="[item.isOpen 
+                            ? 'sidebar-item-parent-wrapper-active' 
+                            : 'sidebar-item-parent-wrapper']"
+                        >
+                        <li class="sidebar-item-parent-wrapper-children head-title" 
+                            :class="[ item.isOpen 
+                                ? 'head-title-border' 
+                                : '']" 
+                                @click.stop="menuToggle(item)"
+                            >
                             <div class="icon">
                                 <icon-cmp :name="item.icon" />
                             </div>
@@ -16,7 +25,11 @@
                     </div>
                     <transition name="decent-top">
                         <div v-if="item.isOpen">
-                            <li v-for="(mI, x) in item.children" :key="x" class="sidebar-item-parent-wrapper-children" @click="goTo(mI.to)">
+                            <li v-for="(mI, x) in item.children" 
+                                :key="x" 
+                                class="sidebar-item-parent-wrapper-children" 
+                                @click="goTo(mI.to)"
+                            >
                                 <div class="icon" />
                                 {{ mI.title }}
                             </li>
@@ -42,182 +55,177 @@ import IconCmp from '@/components/UI/IconCmp.vue';
                 sidebarMenu: [
                     {
                         id: 1,
-                        icon: "wallet",
-                        title: "Сервис",
+                        icon: "services",
+                        title: "Услуги",
                         rules: "",
                         children: [
                             {
                                 title: "Ремонт",
                                 rules: "",
-                                to: "/login"
+                                to: "/user/repair"
                             },
                             {
-                                title: "Доставка",
+                                title: "Диагностика",
                                 rules: "",
-                                to: "/registration"
+                                to: "/user/diagnostics"
                             },
                         ]
                     },
                     {
                         id: 2,
-                        icon: "calendar",
-                        title: "Продажы",
+                        icon: "list",
+                        title: "Продажи",
                         rules: "",
                         children: [
                             {
-                                title: "Оптовые продажи",
+                                title: "Устройства",
                                 rules: "",
-                                to: ""
+                                to: "/user/devices"
                             },
                             {
-                                title: "Рознечные продажи",
+                                title: "Запчасти",
                                 rules: "",
-                                to: ""
+                                to: "/user/parts"
+                            },
+                            {
+                                title: "Аксессуары",
+                                rules: "",
+                                to: "/user/accessories"
                             },
                         ]
                     },
                     {
                         id: 3,
-                        icon: "check",
-                        title: "Склад",
-                        rules: "",
-                        children: [
-                            {
-                                title: "Склад 'Основной'",
-                                rules: "",
-                                to: ""
-                            },
-                            {
-                                title: "Склад 'Регион'",
-                                rules: "",
-                                to: ""
-                            },
-                            {
-                                title: "Поставщики",
-                                rules: "",
-                                to: ""
-                            },
-                        ]
-                    },
-                    {
-                        id: 4,
-                        icon: "user",
-                        title: "Пользователи",
-                        rules: "",
-                        children: [
-                            {
-                                title: "Администратор",
-                                rules: "",
-                                to: ""
-                            },
-                            {
-                                title: "Клиент",
-                                rules: "",
-                                to: ""
-                            },
-                        ]
-                    },
-                    {
-                        id: 5,
-                        icon: "setting",
-                        title: "Склад",
-                        rules: "",
-                        children: [
-                            {
-                                title: "Склад 'Основной'",
-                                rules: "",
-                                to: ""
-                            },
-                            {
-                                title: "Склад 'Регион'",
-                                rules: "",
-                                to: ""
-                            },
-                            {
-                                title: "Поставщики",
-                                rules: "",
-                                to: ""
-                            },
-                        ]
-                    },
-                    {
-                        id: 6,
-                        icon: "add",
-                        title: "Склад",
-                        rules: "",
-                        children: [
-                            {
-                                title: "Склад 'Основной'",
-                                rules: "",
-                                to: ""
-                            }
-                        ]
-                    },
-                    {
-                        id: 7,
-                        icon: "close",
-                        title: "Склад",
-                        rules: "",
-                        children: [
-                            {
-                                title: "Склад 'Основной'",
-                                rules: "",
-                                to: ""
-                            }
-                        ]
-                    },
-                    {
-                        id: 8,
-                        icon: "list",
-                        title: "Склад",
-                        rules: "",
-                        children: [
-                            {
-                                title: "Склад 'Основной'",
-                                rules: "",
-                                to: ""
-                            }
-                        ]
-                    },
-                    {
-                        id: 9,
-                        icon: "delete",
-                        title: "Склад",
-                        rules: "",
-                        children: [
-                            {
-                                title: "Склад 'Основной'",
-                                rules: "",
-                                to: ""
-                            }
-                        ]
-                    },
-                    {
-                        id: 10,
-                        icon: "search",
-                        title: "Склад",
-                        rules: "",
-                        children: [
-                            {
-                                title: "Склад 'Основной'",
-                                rules: "",
-                                to: ""
-                            }
-                        ]
-                    },
-                    {
-                        id: 11,
                         icon: "box",
                         title: "Склад",
                         rules: "",
                         children: [
                             {
-                                title: "Склад 'Основной'",
+                                title: "Основной склад",
                                 rules: "",
-                                to: ""
+                                to: "/user/warehouse"
                             }
                         ]
-                    }
+                    },
+                    {
+                        id: 4,
+                        icon: "clients",
+                        title: "Клиенты",
+                        rules: "",
+                        children: [
+                            {
+                                title: "Список клиентов",
+                                rules: "",
+                                to: "client_list"
+                            },
+                            {
+                                title: "Черный список",
+                                rules: "",
+                                to: "client_list_block"
+                            }
+                        ]
+                    },
+                    {
+                        id: 5,
+                        icon: "report",
+                        title: "Аналитика",
+                        rules: "",
+                        children: [
+                            {
+                                title: "По услугам",
+                                rules: "",
+                                to: "services_report"
+                            },
+                            {
+                                title: "По продажам",
+                                rules: "",
+                                to: "sales_report"
+                            },
+                            {
+                                title: "По складу",
+                                rules: "",
+                                to: "warehouse_report"
+                            },
+                        ]
+                    },
+                    // {
+                    //     id: 6,
+                    //     icon: "add",
+                    //     title: "Склад",
+                    //     rules: "",
+                    //     children: [
+                    //         {
+                    //             title: "Склад 'Основной'",
+                    //             rules: "",
+                    //             to: ""
+                    //         }
+                    //     ]
+                    // },
+                    // {
+                    //     id: 7,
+                    //     icon: "close",
+                    //     title: "Склад",
+                    //     rules: "",
+                    //     children: [
+                    //         {
+                    //             title: "Склад 'Основной'",
+                    //             rules: "",
+                    //             to: ""
+                    //         }
+                    //     ]
+                    // },
+                    // {
+                    //     id: 8,
+                    //     icon: "list",
+                    //     title: "Склад",
+                    //     rules: "",
+                    //     children: [
+                    //         {
+                    //             title: "Склад 'Основной'",
+                    //             rules: "",
+                    //             to: ""
+                    //         }
+                    //     ]
+                    // },
+                    // {
+                    //     id: 9,
+                    //     icon: "delete",
+                    //     title: "Склад",
+                    //     rules: "",
+                    //     children: [
+                    //         {
+                    //             title: "Склад 'Основной'",
+                    //             rules: "",
+                    //             to: ""
+                    //         }
+                    //     ]
+                    // },
+                    // {
+                    //     id: 10,
+                    //     icon: "search",
+                    //     title: "Склад",
+                    //     rules: "",
+                    //     children: [
+                    //         {
+                    //             title: "Склад 'Основной'",
+                    //             rules: "",
+                    //             to: ""
+                    //         }
+                    //     ]
+                    // },
+                    // {
+                    //     id: 11,
+                    //     icon: "box",
+                    //     title: "Склад",
+                    //     rules: "",
+                    //     children: [
+                    //         {
+                    //             title: "Склад 'Основной'",
+                    //             rules: "",
+                    //             to: ""
+                    //         }
+                    //     ]
+                    // }
                 ]
             }
         },
@@ -246,12 +254,17 @@ import IconCmp from '@/components/UI/IconCmp.vue';
 <style lang="scss" scoped>
 @import "~/src/sass/app.scss";
 
+.head-top {
+    min-height: 40px;
+    width: 100%;
+}
+
 .sidebar-wrapper {
     @include flex_col(flex-start, center);
     // height: 100%;
     width: 100%;
     padding-bottom: 10px;
-    padding-left: 10px;
+    padding-left: 20px;
     padding-right: 10px;
     overflow-y: auto;
 }
@@ -283,14 +296,17 @@ import IconCmp from '@/components/UI/IconCmp.vue';
 }
 
 .sidebar {
-    @include flex_col(space-between, center);
+    @include flex_col(flex-start, center);
     height: 100%;
     width: 240px;
+
+    &-item:not(:first-child) {
+        margin-top: 10px;
+    }
     
     &-item {
         @include flex_row(flex-start, center);
         width: 100%;
-        margin-top: 10px;
         border: $main-border;
         border-radius: $rounded;
         font-family: $main-font;
