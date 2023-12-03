@@ -282,6 +282,7 @@ import IconCmp from '@/components/UI/IconCmp.vue';
 .head-title {
     @include flex_row(space-between, center);
     width: 100%;
+    font-size: 14px;
 
     &:hover {
         border-top-left-radius: $rounded;
@@ -310,7 +311,7 @@ import IconCmp from '@/components/UI/IconCmp.vue';
         border: $main-border;
         border-radius: $rounded;
         font-family: $main-font;
-        font-size: 14px;
+        font-size: 12px;
         color: $text-color;
         background-color: $main-white;
         user-select: none;
