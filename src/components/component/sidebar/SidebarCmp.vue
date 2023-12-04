@@ -2,9 +2,9 @@
     <div class="sidebar">
         <div class="head-top"></div>
         <div class="sidebar-wrapper">
-            <div v-for="(item, i) in setState" :key="i" class="sidebar-item" >
+            <div v-for="(item, i) in setState" :key="i" class="sidebar-item">
                 <ul class="sidebar-item-parent">
-                    <div class="sidebar-item-parent-wrapper" 
+                    <div v-if="getAccess(item.rules)" class="sidebar-item-parent-wrapper" 
                         :class="[item.isOpen 
                             ? 'sidebar-item-parent-wrapper-active' 
                             : 'sidebar-item-parent-wrapper']"
@@ -25,14 +25,15 @@
                     </div>
                     <transition name="decent-top">
                         <div v-if="item.isOpen">
-                            <li v-for="(mI, x) in item.children" 
-                                :key="x" 
-                                class="sidebar-item-parent-wrapper-children" 
-                                @click="goTo(mI.to)"
-                            >
+                            <div v-for="(mI, x) in item.children" :key="x" >
+                                <li v-if="getAccess(mI.rules)"
+                                    class="sidebar-item-parent-wrapper-children" 
+                                    @click="goTo(mI.to)" 
+                                >
                                 <div class="icon" />
                                 {{ mI.title }}
                             </li>
+                            </div>
                         </div>
                     </transition>
                 </ul>
@@ -43,6 +44,7 @@
 
 <script>
 import IconCmp from '@/components/UI/IconCmp.vue';
+import getAccess from "../../utils/acc.js"
 
     export default {
         components: {
@@ -57,16 +59,16 @@ import IconCmp from '@/components/UI/IconCmp.vue';
                         id: 1,
                         icon: "services",
                         title: "Услуги",
-                        rules: "",
+                        rules: "service.main.read",
                         children: [
                             {
                                 title: "Ремонт",
-                                rules: "",
+                                rules: "service.repair.read",
                                 to: "/user/repair"
                             },
                             {
                                 title: "Диагностика",
-                                rules: "",
+                                rules: "service.diagnostic.read",
                                 to: "/user/diagnostics"
                             },
                         ]
@@ -75,21 +77,21 @@ import IconCmp from '@/components/UI/IconCmp.vue';
                         id: 2,
                         icon: "list",
                         title: "Продажи",
-                        rules: "",
+                        rules: "sales.main.read",
                         children: [
                             {
                                 title: "Устройства",
-                                rules: "",
+                                rules: "sales.device.read",
                                 to: "/user/devices"
                             },
                             {
                                 title: "Запчасти",
-                                rules: "",
+                                rules: "sales.parts.read",
                                 to: "/user/parts"
                             },
                             {
                                 title: "Аксессуары",
-                                rules: "",
+                                rules: "sales.accessories.read",
                                 to: "/user/accessories"
                             },
                         ]
@@ -98,11 +100,11 @@ import IconCmp from '@/components/UI/IconCmp.vue';
                         id: 3,
                         icon: "box",
                         title: "Склад",
-                        rules: "",
+                        rules: "warehouse.main.read",
                         children: [
                             {
                                 title: "Основной склад",
-                                rules: "",
+                                rules: "warehouse.base.read",
                                 to: "/user/warehouse"
                             }
                         ]
@@ -240,6 +242,7 @@ import IconCmp from '@/components/UI/IconCmp.vue';
         },
 
         methods: {
+            getAccess,
             menuToggle(menuItem) {
                 return menuItem.isOpen = !menuItem.isOpen;
             },
@@ -308,7 +311,6 @@ import IconCmp from '@/components/UI/IconCmp.vue';
     &-item {
         @include flex_row(flex-start, center);
         width: 100%;
-        border: $main-border;
         border-radius: $rounded;
         font-family: $main-font;
         font-size: 12px;

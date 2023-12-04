@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/user',
     component: require("../views/SubContainer.vue").default,
-    redirect: { path: "/user/dashboard" },
+    redirect: { path: "/user/repair" },
     children: [
       {
         path: 'dashboard',
